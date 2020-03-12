@@ -41,3 +41,8 @@ void affiche_file(char *msg, File f);
  * @return 0 si file vide 
  */
 int nb_occ(File f, int x);
+
+/*
+ * Renvoie la dernière occurence du max de la file. NULL si la file est vide
+ */
+Cellule * max_file(File f);

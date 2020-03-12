@@ -20,7 +20,23 @@ void test_nb_occ() {
     printf("\nNombre d'occurences de %d : %d\n", compte, nb_occ(f, compte));
 }
 
-int main(int argc, char** args){
+void test_max_file(){
+    File f = file_vide();
+    f = enfiler(1, f);
+    f = enfiler(6, f);
+    f = enfiler(7, f);
+    f = enfiler(5, f);
+    f = enfiler(7, f);
+    f = enfiler(1, f);
+    
+    Cellule *max_cell = max_file(f);
+
+    printf("max_value %d\n", max_cell->valeur);
+}
+
+int main(int argc, char** args) {
+
+    test_max_file();
 
     test_nb_occ();
 
