@@ -91,6 +91,10 @@ int nb_occ(File f, int x) {
     ptr = ptr->suivant;
   }
 
+  if (ptr->valeur == x) {
+    nb ++;
+  }
+
   return nb;
 }
 

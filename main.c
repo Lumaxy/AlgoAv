@@ -5,15 +5,15 @@
 void test_nb_occ() {
 
     File f = file_vide();
-    int compte = 3;
+    
+    int compte = 1;
 
-    f = enfiler(2, f);
     f = enfiler(1, f);
-    f = enfiler(2, f);
-    f = enfiler(3, f);
-    f = enfiler(2, f);
-    f = enfiler(3, f);
+    f = enfiler(6, f);
+    f = enfiler(7, f);
     f = enfiler(5, f);
+    f = enfiler(7, f);
+    f = enfiler(1, f);
 
     affiche_file("File :", f);
 
@@ -36,9 +36,16 @@ void test_max_file(){
 
 int main(int argc, char** args) {
 
+    /**
+     * TP 1 : Files d'attente
+     */ 
     test_max_file();
 
     test_nb_occ();
+
+    /**
+     * TP 2 : ABR
+     */
 
     return 0;
 }
