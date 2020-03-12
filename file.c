@@ -73,3 +73,19 @@ void affiche_file(char *msg, File f)
  printf("\n");       
 }
 
+Cellule * max_file(File f){
+  if(est_vide(f)){
+    return 0;
+  }
+
+  Cellule * max_cell = f.t;
+  Cellule * current_cell = f.t;
+  while (current_cell != f.q){
+    if (current_cell->valeur >= max_cell->valeur){
+      max_cell = current_cell;
+    }
+    current_cell = current_cell->suivant;
+  }
+  
+  return max_cell;
+}

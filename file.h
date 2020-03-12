@@ -32,3 +32,8 @@ element defiler2(File *f);
 void concat(File *f1, File *f2);
 
 void affiche_file(char *msg, File f);
+
+/**
+ * Renvoie la dernière occurence du max de la file. NULL si la file est vide
+ */
+Cellule * max_file(File f);
