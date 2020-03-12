@@ -8,13 +8,13 @@
 typedef int element;
 
 typedef struct cellule {
-	element	  valeur;
+	element	valeur;
 	struct cellule *suivant; 
 } Cellule;
 						
 typedef struct file { 
 	Cellule *t, *q; 
-} File;	/* t�te queue */
+} File;	/* tete queue */
 
 
 File file_vide(void);
@@ -34,6 +34,15 @@ void concat(File *f1, File *f2);
 void affiche_file(char *msg, File f);
 
 /**
+ * @param f la file a analyser 
+ * @param x l'element a chercher dans la file
+ * 
+ * @return le nombre d'occurences de x dans la file 
+ * @return 0 si file vide 
+ */
+int nb_occ(File f, int x);
+
+/*
  * Renvoie la dernière occurence du max de la file. NULL si la file est vide
  */
 Cellule * max_file(File f);

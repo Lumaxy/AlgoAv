@@ -73,6 +73,31 @@ void affiche_file(char *msg, File f)
  printf("\n");       
 }
 
+int nb_occ(File f, int x) {
+
+  if (est_vide(f)) {
+    return 0;
+  }
+
+  Cellule * ptr;
+  int nb = 0;
+
+  ptr = f.t;
+
+  while (ptr != f.q) {
+    if (ptr->valeur == x) {
+      nb ++;
+    }
+    ptr = ptr->suivant;
+  }
+
+  if (ptr->valeur == x) {
+    nb ++;
+  }
+
+  return nb;
+}
+
 Cellule * max_file(File f){
   if(est_vide(f)){
     return 0;

@@ -2,17 +2,21 @@
 #include <stdlib.h>
 #include "file.h"
 
-void test_fonctionnement(){
+void test_nb_occ() {
     File f = file_vide();
-    if( est_vide(f)){
-        printf("file vide\n");
-    }
+    
+    int compte = 1;
 
     f = enfiler(1, f);
+    f = enfiler(6, f);
+    f = enfiler(7, f);
+    f = enfiler(5, f);
+    f = enfiler(7, f);
+    f = enfiler(1, f);
 
-    defiler2(&f);
+    affiche_file("File :", f);
 
-    affiche_file("file : ", f);
+    printf("\nNombre d'occurences de %d : %d\n", compte, nb_occ(f, compte));
 }
 
 void test_max_file(){
@@ -64,17 +68,27 @@ void test_interclassement(){
     File result = interclassement(f1, f2);
     
     affiche_file("YOUPI : ", result);
-
 }
 
 int main(int argc, char** args){
+    /**
+     * TP 1 : Files d'attente
+     */ 
+
     // test_fonctionnement();
 
     // test_max_file();
 
     // test_min_et_max_file();
     
-    test_interclassement();
-    
+    //test_interclassement();
+    //test_max_file();
+
+    //test_nb_occ();
+
+    /**
+     * TP 2 : ABR
+     */
+
     return 0;
 }
