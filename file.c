@@ -1,47 +1,34 @@
-/******************************************************************************/
-/* Christine PORQUET                 file.c                      Fevrier 2014 */
-/******************************************************************************/
-
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef int element;
-
-typedef struct cellule {
-	element valeur;
-	struct cellule *suivant; } Cellule;
-						
-typedef struct file { 
-	Cellule *t, *q; } File;	/* tete queue */
+#include "file.h"
 
 
-File file_vide(void) { 
-  File f = {NULL,NULL};
+File file_vide(void)
+{ File f={NULL,NULL};
   return f;
 }
 
-int est_vide(File f) { 
+int est_vide(File f) {
   return !f.t; 
-  }
-
+}
 element tete(File f)
-/* ATTENTION: consulter la tete d'une File vide n'a pas de sens */
+/* ATTENTION: consulter la t�te d'une File vide n'a pas de sens */
 { if (est_vide(f)) {printf("Erreur - file vide\n"); exit(-1); }
   return f.t->valeur;
-/* la File n'est pas modifiee */
+/* la File n'est pas modifi�e */
 }
 
 File enfiler(element e,File f)
 { Cellule *pc=(Cellule *)malloc(sizeof(Cellule));
   pc->valeur=e;pc->suivant=NULL;
 	
-  if (est_vide(f))  f.t=f.q=pc;	/* la cellule creee est a la fois tete et queue */
-  else f.q=f.q->suivant=pc;	/* la cellule creee est la nouvelle queue	*/
+  if (est_vide(f))  f.t=f.q=pc;	/* la cellule cr��e est � la fois t�te et queue */
+  else f.q=f.q->suivant=pc;	/* la cellule cr��e est la nouvelle queue	*/
 	return f;
 }
 
 File defiler(File f)
-/* ATTENTION: supprimer la tete d'une File vide n'a pas de sens */
+/* ATTENTION: supprimer la t�te d'une File vide n'a pas de sens */
 { Cellule *pc=f.t;
   if (est_vide(f)) {printf("Erreur - file vide\n"); exit(-1); }
 
@@ -51,7 +38,7 @@ File defiler(File f)
   return f;
 }
 
-element defiler2(File *f)	/* ATTENTION: la File est modifiee */
+element defiler2(File *f)	/* ATTENTION: la File est modifi�e */
 /* ATTENTION: supprimer la t�te d'une File vide n'a pas de sens */
 { element e;
   Cellule *pc=f->t;
@@ -85,3 +72,4 @@ void affiche_file(char *msg, File f)
        }
  printf("\n");       
 }
+
