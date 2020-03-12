@@ -18,3 +18,13 @@ NOEUD *arbre_vide();
 NOEUD *insere(NOEUD *p, element x);
 
 void affiche_arbre(NOEUD *p, int col);
+
+int nombre_feuilles();
+
+int nombre_noeuds();
+
+void parcours_prefixe();
+
+void parcours_suffixe();
+
+void parcours_largeur();
