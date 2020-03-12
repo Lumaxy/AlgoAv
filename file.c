@@ -112,5 +112,52 @@ Cellule * max_file(File f){
     current_cell = current_cell->suivant;
   }
   
-  return max_cell; 
+  return max_cell;
+}
+
+void min_et_max_file(File f, Cellule **pmin, Cellule **pmax){
+  if(est_vide(f)){
+    return;
+  }
+  *pmin = f.t;
+  *pmax = f.t;
+  Cellule *current = f.t;
+  while (current != f.q){
+    if (current->valeur >= (*pmax)->valeur){
+      *pmax = current;
+    }
+    if (current->valeur <= (*pmin)->valeur){
+      *pmin = current;
+    }
+    current = current->suivant;
+  }
+}
+
+File interclassement(File f1, File f2){
+  File f = file_vide();
+
+  Cellule *c_f1 = f1.t, *c_f2 = f2.t;
+
+  while(c_f1 != NULL || c_f2 != NULL){
+    if(c_f1 == NULL) {
+      f = enfiler(c_f2->valeur, f);
+      c_f2 = c_f2->suivant;
+    } else if (c_f2 == NULL){
+      f = enfiler(c_f1->valeur, f);
+      c_f1 = c_f1->suivant;
+    } else {
+      if(c_f1->valeur == c_f2->valeur){
+        f = enfiler(c_f1->valeur, f);
+        c_f1 = c_f1->suivant;
+        c_f2 = c_f2->suivant;
+      } else if(c_f1->valeur < c_f2->valeur){
+        f = enfiler(c_f1->valeur, f);
+        c_f1 = c_f1->suivant;
+      } else if(c_f2->valeur < c_f1->valeur){
+        f = enfiler(c_f2->valeur, f);
+        c_f2 = c_f2->suivant;
+      }
+    }
+  }
+  return f;
 }
