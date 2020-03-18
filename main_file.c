@@ -71,24 +71,17 @@ void test_interclassement(){
 }
 
 int main(int argc, char** args){
-    /**
-     * TP 1 : Files d'attente
-     */ 
-
+    
     // test_fonctionnement();
 
-    // test_max_file();
+    test_max_file();
 
-    // test_min_et_max_file();
+    test_min_et_max_file();
     
-    //test_interclassement();
-    //test_max_file();
+    test_interclassement();
+    test_max_file();
 
-    //test_nb_occ();
-
-    /**
-     * TP 2 : ABR
-     */
+    test_nb_occ();
 
     return 0;
 }

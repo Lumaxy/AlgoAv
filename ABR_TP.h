@@ -22,11 +22,11 @@ void affiche_arbre(NOEUD *p, int col);
 /* Retourne le nombre de feuille de l'arbre */
 int nombre_feuilles(NOEUD * arbre);
 
-/* Retourne le nombre de noeud */
+/* Fait un parcours prefixe : Noeud, Gauche, Droite */
 int parcours_prefixe(NOEUD * arbre);
 
-/* retourne le nombre de noeud */
+/* Fait un parcours suffixe : Gauche, Droite, Noeud  */
 int parcours_suffixe(NOEUD * arbre);
 
-/* Renvoie le nombre de noeud */
-int parcours_largeur(NOEUD * arbre);
+/* Effectue un parcours en largeur */
+void parcours_largeur(NOEUD * arbre);

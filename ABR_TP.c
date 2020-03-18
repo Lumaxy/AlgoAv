@@ -5,15 +5,26 @@
 
 typedef NOEUD* element;
 
-int parcours_largeur(NOEUD * noeud){
-    int n_noeud = 0;
-    File *file = file_vide();
-    
-    file = enfiler(file, noeud);
+void parcours_largeur(NOEUD * noeud){
+    // int n_noeud = 0;
+    File file = file_vide();
+    NOEUD *p;
 
-    //while(
+    file = enfiler(p, file);
 
-    return n_noeud;
+    while (!est_vide(file)) {
+        p = defiler2(&file);
+
+        if (p->droit)
+        {
+            file = enfiler(p->droit, file);
+        }
+
+        if (p->gauche)
+        {
+            file = enfiler(p->gauche, file);
+        }
+    }
 }
 
 int nombre_feuilles(NOEUD * noeud){
