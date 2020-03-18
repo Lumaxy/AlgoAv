@@ -19,12 +19,14 @@ NOEUD *insere(NOEUD *p, element x);
 
 void affiche_arbre(NOEUD *p, int col);
 
-int nombre_feuilles();
+/* Retourne le nombre de feuille de l'arbre */
+int nombre_feuilles(NOEUD * arbre);
 
-int nombre_noeuds();
+/* Retourne le nombre de noeud */
+int parcours_prefixe(NOEUD * arbre);
 
-void parcours_prefixe();
+/* retourne le nombre de noeud */
+int parcours_suffixe(NOEUD * arbre);
 
-void parcours_suffixe();
-
-void parcours_largeur();
+/* Renvoie le nombre de noeud */
+int parcours_largeur(NOEUD * arbre);
