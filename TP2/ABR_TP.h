@@ -1,21 +1,18 @@
-/*****************************************************************************/
-/*   C. PORQUET                     ABR_TP.c                   Novembre 2012 */
-/*                      Arbres binaires de recherche                         */
-/*****************************************************************************/
-
+#ifndef ABR_H
+#define ABR_H
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int element;
+typedef int element_arbre;
 
 typedef struct noeud {
-	element valeur;
+	element_arbre valeur;
 	struct noeud *gauche, *droit;
-	} NOEUD, *ABR;
+} NOEUD, *ABR;
 
 NOEUD *arbre_vide();
 
-NOEUD *insere(NOEUD *p, element x);
+NOEUD *insere(NOEUD *p, element_arbre x);
 
 void affiche_arbre(NOEUD *p, int col);
 
@@ -30,3 +27,4 @@ int parcours_suffixe(NOEUD * arbre);
 
 /* Effectue un parcours en largeur */
 void parcours_largeur(NOEUD * arbre);
+#endif
