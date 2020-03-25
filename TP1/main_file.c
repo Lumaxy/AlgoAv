@@ -71,6 +71,9 @@ void test_interclassement(){
 }
 
 int main(){
+
+    printf("Taille d'une Cellule : %ld\n", sizeof(struct cellule));
+
     test_min_et_max_file();
     test_interclassement();
     test_max_file();
