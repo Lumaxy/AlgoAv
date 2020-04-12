@@ -46,7 +46,7 @@ int parcours_prefixe(NOEUD * noeud){
     if (noeud->valeur == '\0'){
         printf("\\0 ");
     } else {
-        printf("%c ", noeud->valeur);
+        printf("%lc ", noeud->valeur);
     }
     if (noeud->gauche != NULL){
         n_noeud += parcours_prefixe(noeud->gauche);

@@ -1,4 +1,4 @@
-naire: TP3/main_naire.c TP3/ABR_TP.c TP3/ABR_TP.h TP3/file.h TP3/file.c
+naire: TP3/main_naire.c TP3/ABR_TP.c TP3/ABR_TP.h TP3/file.h TP3/file.c dico/dico.fr
 	gcc -o run TP3/main_naire.c TP3/ABR_TP.c TP3/ABR_TP.h TP3/file.h TP3/file.c -Wextra -Wall -pedantic -g
 
 arbre: TP2/main_arbre.c TP2/ABR_TP.c TP2/ABR_TP.h TP2/file.h TP2/file.c

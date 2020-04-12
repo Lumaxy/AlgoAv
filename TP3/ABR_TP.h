@@ -15,6 +15,9 @@ typedef struct noeud {
 NOEUD *arbre_vide();
 
 NOEUD *insere(NOEUD *p, element_arbre x);
+NOEUD * insere_mot(NOEUD * noeud, char * word, int index);
+
+int rechercher_mot(NOEUD * arbre, char * word, int index);
 
 void affiche_arbre(NOEUD *p, int col);
 
