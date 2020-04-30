@@ -91,3 +91,9 @@ void affiche_file(char *msg, File f) {
     }
     printf("\n");
 }
+
+void free_file(File *file){
+    while(!est_vide(*file)){
+        defiler2(file);
+    }
+}

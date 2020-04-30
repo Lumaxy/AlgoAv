@@ -27,4 +27,7 @@ int parcours_suffixe(NOEUD * arbre);
 
 /* Effectue un parcours en largeur */
 void parcours_largeur(NOEUD * arbre);
+
+/* Libère la mémoire */
+void free_arbre(NOEUD * arbre);
 #endif

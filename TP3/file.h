@@ -31,4 +31,7 @@ element defiler2(File *f);
 void concat(File *f1, File *f2);
 
 void affiche_file(char *msg, File f);
+
+/* Libère la mémoire */
+void free_file(File *file);
 #endif

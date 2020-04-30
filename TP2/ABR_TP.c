@@ -96,3 +96,12 @@ void affiche_arbre(NOEUD *p, int col) {
         affiche_arbre(p->gauche, col + 1);
     }
 }
+void free_arbre(NOEUD * noeud){
+    if(noeud->droit != 0){
+        free_arbre(noeud->droit);
+    }
+    if(noeud->gauche != 0){
+        free_arbre(noeud->gauche);
+    }
+    free(noeud);
+}

@@ -40,8 +40,8 @@ NOEUD * insere_mot(NOEUD * noeud, char * word, int index){
 }
 
 /**
- * @return 1 if found, 0 otherwise.
- */
+* @return 1 if found, 0 otherwise.
+*/
 int rechercher_mot(NOEUD * noeud, char * word, int index){
     if (noeud){
         if (index == (int) strlen(word) && noeud->valeur == '\0'){
@@ -70,6 +70,8 @@ void test_insertion_arbre(){
 
     parcours_prefixe(arbre);
     printf("\n");
+
+    free_arbre(arbre);
 }
 
 void test_recherche_arbre(){
@@ -83,6 +85,7 @@ void test_recherche_arbre(){
     arbre = insere_mot(arbre, "cela", 0);
 
     printf("%d (1=Oui, 0=Non)\n", rechercher_mot(arbre, "ceci", 0));
+    free_arbre(arbre);
 }
 
 void test_dictionnaire(){
@@ -105,15 +108,17 @@ void test_dictionnaire(){
     int nombre_de_noeud = parcours_prefixe(arbre_dico);
     printf("\nMémoire utilisée = %ld\n", sizeof(NOEUD) * nombre_de_noeud);
     fclose(dico);
+    free_arbre(arbre_dico);
 }
 
 int main(){
     // Gestion de l'UTF-8
     setlocale(LC_ALL, "");
 
-    // test_insertion_arbre();
-    // test_recherche_arbre();
-    // test_dictionnaire();
+    test_insertion_arbre();
+
+    test_recherche_arbre();
+    test_dictionnaire();
 
     return 0;
 }
