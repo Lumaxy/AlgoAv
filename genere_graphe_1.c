@@ -1,7 +1,7 @@
 /*****************************************************************************/
-/* C.PORQUET                 genere_graphe_1.c                 Décembre 2007 */ 
-/*                     Générateur automatique de graphes                     */
-/*                  Les sommets sont numérotés à partir de 1                 */
+/* C.PORQUET                 genere_graphe_1.c                 Dï¿½cembre 2007 */
+/*                     Gï¿½nï¿½rateur automatique de graphes                     */
+/*                  Les sommets sont numï¿½rotï¿½s ï¿½ partir de 1                 */
 /*****************************************************************************/
 
 #include <stdio.h>
@@ -19,244 +19,244 @@ typedef struct {
 	   float **matrice; /* matrice d'adjacence */
 	   } graphe;
 
-typedef struct {	
+typedef struct {
 	 int *pere;
 	 int nbelements;
-	 int nbclasses; } t_ens;	 
+	 int nbclasses; } t_ens;
 
 /*****************************************************************************/
 void init_graphe(int nbs, int nba, graphe *g)
-{ int i,j;
+{ int i;
 
   g->nbsom = nbs; g->nbarc = nba;
   g->matrice = (float **)calloc(g->nbsom+1,sizeof(float*));
   for (i=1;i<=g->nbsom;i++)
       { g->matrice[i] = (float *)calloc(g->nbsom+1,sizeof(float));
-        /* for (j=1; j<=g->nbsom; j++) g->matrice[i][j] = 0.; 
+        /* for (j=1; j<=g->nbsom; j++) g->matrice[i][j] = 0.;
 	   inutile avec calloc */
       }
 }
-/*****************************************************************************/	   	   
+/*****************************************************************************/
 void cree_graphe_oriente_value(char *nom_fich, int nbs, int nba)
-/* format du fichier : 
+/* format du fichier :
    nbsommets nbarcs
-   aretes sous forme de triplets origine extremité valuation                 */
-{ FILE *fich; 
+   aretes sous forme de triplets origine extremitï¿½ valuation                 */
+{ FILE *fich;
   graphe g;
   int ori, ext;
   float val;
   int iarc;
-  
+
   fich = fopen(nom_fich,"wt");
-  
+
   fprintf(fich,"%d %d\n",nbs,nba);
-  
-  init_graphe(nbs,nba,&g);    
-      
-  /* génération d'arcs aléatoires */
+
+  init_graphe(nbs,nba,&g);
+
+  /* gï¿½nï¿½ration d'arcs alï¿½atoires */
   for (iarc = 1; iarc <= nba ; iarc++)
       {do {ori = random()%nbs + 1;
            ext = random()%nbs + 1; }
        while (g.matrice[ori][ext]);
-       /* pour ne pas générer 2 fois le meme arc */
-	    
+       /* pour ne pas gï¿½nï¿½rer 2 fois le meme arc */
+
        do val = (random()%(int)(10*MAXVALUATION))/10.; while (val == 0.0);
-       /* pour n'avoir qu'une décimale */
+       /* pour n'avoir qu'une dï¿½cimale */
        g.matrice[ori][ext] = val;
        fprintf(fich,"%d %d %5.1f\n",ori,ext,val);
-      } 
-     
+      }
+
   fclose(fich);
 }
 /*****************************************************************************/
 void cree_graphe_oriente_non_value(char *nom_fich, int nbs, int nba)
-/* format du fichier : 
+/* format du fichier :
    nbsommets nbarcs
-   aretes sous forme de triplets origine extremité                           */
-{ FILE *fich; 
+   aretes sous forme de triplets origine extremitï¿½                           */
+{ FILE *fich;
   graphe g;
   int ori, ext;
   int iarc;
-  
+
   fich = fopen(nom_fich,"wt");
-  
+
   fprintf(fich,"%d %d\n",nbs,nba);
-  
-  init_graphe(nbs,nba,&g);    
-      
-  /* génération d'arcs aléatoires */
+
+  init_graphe(nbs,nba,&g);
+
+  /* gï¿½nï¿½ration d'arcs alï¿½atoires */
   for (iarc = 1; iarc <= nba ; iarc++)
       {do {ori = random()%nbs + 1;
            ext = random()%nbs + 1; }
        while (g.matrice[ori][ext]);
-       /* pour ne pas générer 2 fois le meme arc */
-	    
+       /* pour ne pas gï¿½nï¿½rer 2 fois le meme arc */
+
        g.matrice[ori][ext] = 1;
        fprintf(fich,"%d %d\n",ori,ext);
-      } 
-     
+      }
+
   fclose(fich);
 }
 /*****************************************************************************/
 void cree_graphe_non_oriente_value(char *nom_fich, int nbs, int nba)
-/* format du fichier : 
+/* format du fichier :
    nbsommets nbaretes
-   aretes sous forme de triplets origine extremité valuation                 */
-{ FILE *fich; 
+   aretes sous forme de triplets origine extremitï¿½ valuation                 */
+{ FILE *fich;
   graphe g;
   int ori, ext;
   float val;
   int iare;
-  
+
   fich = fopen(nom_fich,"wt");
-  
+
   fprintf(fich,"%d %d\n",nbs,nba);
-  
-  init_graphe(nbs,nba,&g);    
-      
-  /* génération d'aretes aléatoires */
+
+  init_graphe(nbs,nba,&g);
+
+  /* gï¿½nï¿½ration d'aretes alï¿½atoires */
   for (iare = 1; iare <= nba ; iare++)
       {do {ori = random()%nbs + 1;
            ext = random()%nbs + 1; }
        while ((ori == ext)||(g.matrice[ori][ext]));
-       /* pour interdire les boucles et ne pas générer 2 fois la meme arete */
-	    
+       /* pour interdire les boucles et ne pas gï¿½nï¿½rer 2 fois la meme arete */
+
        do val = (random()%(int)(10*MAXVALUATION))/10.; while (val == 0.0);
-       /* pour n'avoir qu'une décimale */
+       /* pour n'avoir qu'une dï¿½cimale */
        g.matrice[ori][ext] = g.matrice[ext][ori] = val;
        fprintf(fich,"%d %d %5.1f\n",ori,ext,val);
-      } 
-     
+      }
+
   fclose(fich);
 }
-/*****************************************************************************/  
+/*****************************************************************************/
 void cree_graphe_non_oriente_non_value(char *nom_fich, int nbs, int nba)
-/* format du fichier : 
+/* format du fichier :
    nbsommets nbaretes
-   aretes sous forme de triplets origine extremité                           */
-{ FILE *fich; 
+   aretes sous forme de triplets origine extremitï¿½                           */
+{ FILE *fich;
   graphe g;
   int ori, ext;
   int iare;
-  
+
   fich = fopen(nom_fich,"wt");
-  
+
   fprintf(fich,"%d %d\n",nbs,nba);
-  
-  init_graphe(nbs,nba,&g);    
-      
-  /* génération d'aretes aléatoires */
+
+  init_graphe(nbs,nba,&g);
+
+  /* gï¿½nï¿½ration d'aretes alï¿½atoires */
   for (iare = 1; iare <= nba ; iare++)
       {do {ori = random()%nbs + 1;
            ext = random()%nbs + 1; }
        while ((ori == ext)||(g.matrice[ori][ext]));
-       /* pour interdire les boucles et ne pas générer 2 fois la meme arete */
-	    
+       /* pour interdire les boucles et ne pas gï¿½nï¿½rer 2 fois la meme arete */
+
        g.matrice[ori][ext] = g.matrice[ext][ori] = 1;
        fprintf(fich,"%d %d\n",ori,ext);
-      } 
-     
+      }
+
   fclose(fich);
 }
 /*****************************************************************************/
 void cree_graphe_topo_value(char *nom_fich, int nbs, int nba)
-/* format du fichier : 
+/* format du fichier :
    nbsommets nbarcs
-   arcs sous forme de triplets origine extremité valuation                  */
-{ FILE *fich; 
+   arcs sous forme de triplets origine extremitï¿½ valuation                  */
+{ FILE *fich;
   graphe g;
   int ori, ext;
   float val;
   int iarc;
-  
+
   fich = fopen(nom_fich,"wt");
-  
+
   fprintf(fich,"%d %d\n",nbs,nba);
-  
+
   init_graphe(nbs,nba,&g);
-  
-  /* on s'assure d'abord d'avoir au moins un arc bien orienté
+
+  /* on s'assure d'abord d'avoir au moins un arc bien orientï¿½
      du type origine -> origine+1 */
-  
+
   for (iarc=1; iarc <= nbs-1 ; iarc++)
       {ori = iarc;
-       ext = iarc+1;       
+       ext = iarc+1;
        do val = (random()%(int)(10*MAXVALUATION))/10.; while (val == 0.0);
-       /* pour n'avoir qu'une décimale */
-       
+       /* pour n'avoir qu'une dï¿½cimale */
+
        g.matrice[ori][ext]=val;
-       fprintf(fich,"%d %d %5.1f\n",ori,ext,val);       
+       fprintf(fich,"%d %d %5.1f\n",ori,ext,val);
        }
-       
-  /* ensuite, on complète avec des arcs aléatoires */
+
+  /* ensuite, on complï¿½te avec des arcs alï¿½atoires */
   for (iarc=nbs; iarc <= nba ; iarc++)
       {do {ori = random()%nbs + 1;
           ext = random()%nbs + 1; }
        while ((ori == 1)||(ori >= nbs - 1)
             ||(ext <= ori)   /* pour assurer la "bonne" orientation des arcs */
             ||(g.matrice[ori][ext]));
-	                    /* pour ne pas générer 2 fois le meme arc */
-	    
+	                    /* pour ne pas gï¿½nï¿½rer 2 fois le meme arc */
+
        do val = (random()%(int)(10*MAXVALUATION))/10.; while (val == 0.0);
-       /* pour n'avoir qu'une décimale */
-       
+       /* pour n'avoir qu'une dï¿½cimale */
+
        g.matrice[ori][ext]=val;
        fprintf(fich,"%d %d %5.1f\n",ori,ext,val);
-      } 
-     
+      }
+
   fclose(fich);
 }
-/*****************************************************************************/ 
+/*****************************************************************************/
 void cree_graphe_topo_non_value(char *nom_fich, int nbs, int nba)
-/* format du fichier : 
+/* format du fichier :
    nbsommets nbarcs
-   arcs sous forme de triplets origine extremité valuation                  */
-{ FILE *fich; 
+   arcs sous forme de triplets origine extremitï¿½ valuation                  */
+{ FILE *fich;
   graphe g;
   int ori, ext;
   int iarc;
-  
+
   fich = fopen(nom_fich,"wt");
-  
-  fprintf(fich,"%d %d\n",nbs,nba); 
-  
+
+  fprintf(fich,"%d %d\n",nbs,nba);
+
   init_graphe(nbs,nba,&g);
-  
-  /* on s'assure d'abord d'avoir au moins un arc bien orienté
+
+  /* on s'assure d'abord d'avoir au moins un arc bien orientï¿½
      du type origine -> origine+1 */
-  
+
   for (iarc=1; iarc <= nbs-1 ; iarc++)
       {ori = iarc;
-       ext = iarc+1;       
-       
+       ext = iarc+1;
+
        g.matrice[ori][ext]=1;
-       fprintf(fich,"%d %d\n",ori,ext);       
+       fprintf(fich,"%d %d\n",ori,ext);
        }
-       
-  /* ensuite, on complète avec des arcs aléatoires */
+
+  /* ensuite, on complï¿½te avec des arcs alï¿½atoires */
   for (iarc=nbs; iarc <= nba ; iarc++)
       {do {ori = random()%nbs + 1;
           ext = random()%nbs + 1; }
        while ((ori == 1)||(ori >= nbs - 1)
             ||(ext <= ori)   /* pour assurer la "bonne" orientation des arcs */
             ||(g.matrice[ori][ext]));
-	                    /* pour ne pas générer 2 fois le meme arc */
-       
+	                    /* pour ne pas gï¿½nï¿½rer 2 fois le meme arc */
+
        g.matrice[ori][ext]=1;
        fprintf(fich,"%d %d\n",ori,ext);
-      } 
-     
+      }
+
   fclose(fich);
 }
-/*****************************************************************************/  
+/*****************************************************************************/
 void init_ens(int dim, t_ens *ens)
 	{int i;
-	 
-	 ens->pere =(int *)calloc(dim+1, sizeof(int)); 
+
+	 ens->pere =(int *)calloc(dim+1, sizeof(int));
 	 ens->nbelements = ens->nbclasses = dim;
-	 for (i=1;i<=ens->nbelements;i++) ens->pere[i]=-1; 
+	 for (i=1;i<=ens->nbelements;i++) ens->pere[i]=-1;
 	 }
-/*****************************************************************************/	 
+/*****************************************************************************/
 int trouver(int x, t_ens *ens)
 	 /* recherche de la classe de x avec compression de chemins */
          {if (ens->pere[x] < 0) return x;
@@ -265,121 +265,121 @@ int trouver(int x, t_ens *ens)
 /*****************************************************************************/
 void reunir(int r1, int r2, t_ens *ens)
          /* reunion ponderee de la plus petite classe dans la plus grande */
-	 {if (r1 != r2) 
+	 {if (r1 != r2)
 	     {if (ens->pere[r1] <= ens->pere[r2])
 	         	{ens->pere[r1] += ens->pere[r2];
 		  	 ens->pere[r2] = r1;}
               else 	{ens->pere[r2] += ens->pere[r1];
 	                 ens->pere[r1] = r2; }
-			 
+
               ens->nbclasses--; }
 	  /* sinon rien a faire */
 	 }
-/*****************************************************************************/ 	     
+/*****************************************************************************/
 void cree_graphe_connexe_non_value(char *nom_fich, int nbs, int nba)
-/* format du fichier : 
+/* format du fichier :
    nbsommets nbaretes
-   aretes sous forme de triplets origine extremité                           */
-{ FILE *fich; 
+   aretes sous forme de triplets origine extremitï¿½                           */
+{ FILE *fich;
   graphe g;
   t_ens e;
   int ori, ext;
   int i, rori, rext;
-  
+
   fich = fopen(nom_fich,"wt");
-  
+
   fprintf(fich,"%d %d\n",nbs,nba);
-  
+
   init_graphe(nbs,nba,&g);
-  init_ens(nbs,&e);    
-      
-  /* génération aléatoire de nbs-1 aretes pour assurer la connexité du graphe */
+  init_ens(nbs,&e);
+
+  /* gï¿½nï¿½ration alï¿½atoire de nbs-1 aretes pour assurer la connexitï¿½ du graphe */
   while (e.nbclasses > 1)
       {do {ori = random()%nbs + 1;
-           ext = random()%nbs + 1; 
+           ext = random()%nbs + 1;
 	   rori = trouver(ori,&e);
 	   rext = trouver(ext,&e);
 	   }
        while ((ori == ext)||(g.matrice[ori][ext])||(rori == rext));
-       /* pour interdire les boucles et ne pas générer 2 fois la meme arete */
-      
+       /* pour interdire les boucles et ne pas gï¿½nï¿½rer 2 fois la meme arete */
+
        g.matrice[ori][ext] = g.matrice[ext][ori] = 1;
-       reunir(rori,rext,&e);        
+       reunir(rori,rext,&e);
        fprintf(fich,"%d %d\n",ori,ext);
-      } 
-      
-  /* on complète à nba avec des aretes aléatoires */   
+      }
+
+  /* on complï¿½te ï¿½ nba avec des aretes alï¿½atoires */
    for (i = nbs; i <= nba ; i++)
       {do {ori = random()%nbs + 1;
            ext = random()%nbs + 1; }
        while ((ori == ext)||(g.matrice[ori][ext]));
-       /* pour interdire les boucles et ne pas générer 2 fois la meme arete */
-	    
+       /* pour interdire les boucles et ne pas gï¿½nï¿½rer 2 fois la meme arete */
+
        g.matrice[ori][ext] = g.matrice[ext][ori] = 1;
        fprintf(fich,"%d %d\n",ori,ext);
-      } 
-         
+      }
+
   fclose(fich);
 }
-/*****************************************************************************/  
+/*****************************************************************************/
 void cree_graphe_connexe_value(char *nom_fich, int nbs, int nba)
-/* format du fichier : 
+/* format du fichier :
    nbsommets nbaretes
-   aretes sous forme de triplets origine extremité                           */
-{ FILE *fich; 
+   aretes sous forme de triplets origine extremitï¿½                           */
+{ FILE *fich;
   graphe g;
   t_ens e;
   int ori, ext;
   int i, rori, rext;
   float val;
-  
+
   fich = fopen(nom_fich,"wt");
-  
+
   fprintf(fich,"%d %d\n",nbs,nba);
-  
+
   init_graphe(nbs,nba,&g);
-  init_ens(nbs,&e);    
-      
-  /* génération aléatoire de nbs-1 aretes pour assurer la connexité du graphe */
+  init_ens(nbs,&e);
+
+  /* gï¿½nï¿½ration alï¿½atoire de nbs-1 aretes pour assurer la connexitï¿½ du graphe */
   while (e.nbclasses > 1)
       {do {ori = random()%nbs + 1;
-           ext = random()%nbs + 1; 
+           ext = random()%nbs + 1;
 	   rori = trouver(ori,&e);
 	   rext = trouver(ext,&e);
 	   }
        while ((ori == ext)||(g.matrice[ori][ext])||(rori == rext));
-       /* pour interdire les boucles et ne pas générer 2 fois la meme arete */
-      
+       /* pour interdire les boucles et ne pas gï¿½nï¿½rer 2 fois la meme arete */
+
        do val = (random()%(int)(10*MAXVALUATION))/10.; while (val == 0.0);
-       /* pour n'avoir qu'une décimale */
+       /* pour n'avoir qu'une dï¿½cimale */
        g.matrice[ori][ext] = g.matrice[ext][ori] = val;
-       reunir(rori,rext,&e);        
+       reunir(rori,rext,&e);
        fprintf(fich,"%d %d %5.1f\n",ori,ext,val);
-      } 
-      
-  /* on complète à nba avec des aretes aléatoires */   
+      }
+
+  /* on complï¿½te ï¿½ nba avec des aretes alï¿½atoires */
    for (i = nbs; i <= nba ; i++)
       {do {ori = random()%nbs + 1;
            ext = random()%nbs + 1; }
        while ((ori == ext)||(g.matrice[ori][ext]));
-       /* pour interdire les boucles et ne pas générer 2 fois la meme arete */
-       
+       /* pour interdire les boucles et ne pas gï¿½nï¿½rer 2 fois la meme arete */
+
        do val = (random()%(int)(10*MAXVALUATION))/10.; while (val == 0.0);
-       /* pour n'avoir qu'une décimale */    
+       /* pour n'avoir qu'une dï¿½cimale */
        g.matrice[ori][ext] = g.matrice[ext][ori] = val;
        fprintf(fich,"%d %d %5.1f\n",ori,ext,val);
-      } 
-         
+      }
+
   fclose(fich);
 }
-/*****************************************************************************/  
+/*****************************************************************************/
 
 int main(int argc, char *argv[])
 {int nbs, nba;
  char nom_fichier[100];
  int type_graphe;
  int alea;
- 
+
  void (*fonction[8])(char *,int,int)= {cree_graphe_oriente_value,
                                        cree_graphe_oriente_non_value,
 				       cree_graphe_non_oriente_value,
@@ -389,11 +389,11 @@ int main(int argc, char *argv[])
 				       cree_graphe_topo_value,
 				       cree_graphe_topo_non_value
 				       };
-					 
+
   srandom(time(NULL));
-  
+
   strcpy(nom_fichier,((argc == 1) ? "graphe_alea.txt" : argv[1]));
-  
+
   printf("Quel type de graphe voulez-vous generer ?\n");
   printf("\t1 - graphe oriente value\n");
   printf("\t2 - graphe oriente non value\n");
@@ -404,20 +404,20 @@ int main(int argc, char *argv[])
   printf("\t7 - graphe oriente value possedant un marquage topologique\n");
   printf("\t8 - graphe oriente non value possedant un marquage topologique ? ");
   scanf("%d",&type_graphe);
-  
+
   printf("Generation aleatoire du nombre de sommets et d'arcs/aretes - 1/0 ? ");
   scanf("%d",&alea);
-  
+
   if (!alea) {printf("Nombre de sommets - Nombre d'arcs/aretes ? ");
               scanf("%d %d",&nbs,&nba); }
   else       {do nbs = random()%MAXSOMMET;     while (nbs==0);
               do nba = nbs*(random()%MAXSUCC); while (nba < nbs); }
-	      
- 
+
+
  (fonction[type_graphe - 1])(nom_fichier,nbs,nba);
-  
+
   printf("Graphe genere : %s (%d sommets - %d arcs/aretes)\n",
           nom_fichier,nbs,nba);
-  
+
 }
-/****************************************************************************/ 	
+/****************************************************************************/

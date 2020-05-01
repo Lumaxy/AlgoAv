@@ -65,7 +65,7 @@ Matrice lire_graph(char * nom_fichier, int * nombre_sommets){
 }
 
 int parcours_largeur(Matrice adjacence, int nombre_sommets){
-    int * marques = malloc(sizeof(int) * nombre_sommets);
+    int * marques = (int *) malloc(sizeof(int) * nombre_sommets);
     File a_explorer = file_vide();
     int i;
     int somme = 0;
@@ -132,8 +132,8 @@ void profondeur_suffixe(Matrice adjacence, int * marques, int sommet, int nombre
     printf("%d ", sommet);
 }
 /* Retourne 0 si le graph est connexe, un nombre positif sinon */
-int afficher(void (*methode)(), Matrice adjacence, int nombre_sommets){
-    int * marques = malloc(sizeof(int) * nombre_sommets);
+int afficher(void (* methode)(Matrice, int *, int, int), Matrice adjacence, int nombre_sommets){
+    int * marques = (int*) malloc(sizeof(int) * nombre_sommets);
     int i;
     int connexe = -1;
     for(i = 0; i < nombre_sommets; i++){
@@ -165,7 +165,8 @@ int main(){
     Matrice adjacence;
     int nombre_sommets;
     int connexe;
-    adjacence = lire_graph("graphe_alea.txt", &nombre_sommets);
+    char filename[] = "graphe_alea.txt";
+    adjacence = lire_graph(filename, &nombre_sommets);
     afficher_matrice(adjacence, nombre_sommets);
 
     printf("Nombre de sommet dans le graph : %d\n", nombre_sommets);
@@ -195,7 +196,7 @@ int main(){
     }
 
     printf("Analyse de la complexité spatiale\n");
-    printf("Taille en octets utilisé par la matrice d'adjacence : %ld\n", (sizeof(int) * nombre_sommets) * sizeof(int) * nombre_sommets);
+    printf("Taille en octets utilisé par la matrice d'adjacence : %ldu\n", (long int) (sizeof(int) * nombre_sommets) * sizeof(int) * nombre_sommets);
 
     free_matrice(adjacence, nombre_sommets);
     return 0;

@@ -12,7 +12,7 @@ Matrice lire_graph(char * nom_fichier, int * nombre_sommets);
 Matrice creer_matrice(int nombre_sommets, int valeur_initiale);
 void afficher_matrice(Matrice, int nombre_sommets);
 
-int afficher(void (*methode)(), Matrice adjacence, int nombre_sommets);
+int afficher(void (*methode)(Matrice, int *, int, int), Matrice adjacence, int nombre_sommets);
 
 void profondeur_prefixe(Matrice adjacence, int * marques, int sommet, int nombre_sommets);
 void profondeur_suffixe(Matrice adjacence, int * marques, int sommet, int nombre_sommets);

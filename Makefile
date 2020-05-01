@@ -1,3 +1,6 @@
+graph_2: TP5/L_ADJ.c TP5/L_ADJ.h TP5/file.h TP5/file.c
+	gcc -o run TP5/L_ADJ.c TP5/L_ADJ.h TP5/file.h TP5/file.c -Wextra -Wall -pedantic -g
+
 graph: TP4/M_ADJ.c TP4/M_ADJ.h TP4/file.h TP4/file.c
 	gcc -o run TP4/M_ADJ.c TP4/M_ADJ.h TP4/file.h TP4/file.c -Wextra -Wall -pedantic -g
 
