@@ -1,3 +1,6 @@
+graph: TP4/M_ADJ.c TP4/M_ADJ.h TP4/file.h TP4/file.c
+	gcc -o run TP4/M_ADJ.c TP4/M_ADJ.h TP4/file.h TP4/file.c -Wextra -Wall -pedantic -g
+
 naire: TP3/main_naire.c TP3/ABR_TP.c TP3/ABR_TP.h TP3/file.h TP3/file.c dico/dico.fr
 	gcc -o run TP3/main_naire.c TP3/ABR_TP.c TP3/ABR_TP.h TP3/file.h TP3/file.c -Wextra -Wall -pedantic -g
 
