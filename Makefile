@@ -1,3 +1,6 @@
+MPM: TP6/mpm.c TP6/L_ADJ.c TP6/L_ADJ.h TP6/file.h TP6/file.c
+	gcc -o run TP6/mpm.c TP6/L_ADJ.c TP6/L_ADJ.h TP6/file.h TP6/file.c -Wextra -Wall -pedantic -g
+
 graph_2: TP5/L_ADJ.c TP5/L_ADJ.h TP5/file.h TP5/file.c
 	gcc -o run TP5/L_ADJ.c TP5/L_ADJ.h TP5/file.h TP5/file.c -Wextra -Wall -pedantic -g
 
