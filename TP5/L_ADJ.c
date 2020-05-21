@@ -76,6 +76,7 @@ T_LADJ charge_graphe(char *nom_fichier){
 		g.tab[ori] = p;
 		g.nombre_predecesseurs[ext]++;
 	}
+	printf("%ld octet pour une cellule\nnar = %d\nnsom = %d\ntaille liste : %ld\n", sizeof(T_CELLULE), nar, nsom, nsom * sizeof(T_CELLULE) + nar * sizeof(T_CELLULE));
 	fclose(fp);
 	return g;
 }
@@ -131,7 +132,8 @@ int marquage_topologique(T_LADJ graph){
 
 	position = 1;
 	while (pointeur_file != NULL){
-		printf("%d:%d ", position++, pointeur_file->valeur);
+		position++;
+		printf("%d ", pointeur_file->valeur);
 		pointeur_file = pointeur_file->suivant;
 	}
 	printf("\n");

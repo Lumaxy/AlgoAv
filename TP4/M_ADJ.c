@@ -176,7 +176,7 @@ int main(int argc, char ** argv){
 
     printf("Nombre de sommet dans le graph : %d\n", nombre_sommets);
 
-    printf("Préfixe : \n");
+    printf("\n Parcours préfixe : \n");
     connexe = afficher(profondeur_prefixe, adjacence, nombre_sommets);
     if (connexe == 0){
         printf("Le graph est connexe.\n");
@@ -184,7 +184,7 @@ int main(int argc, char ** argv){
         printf("Le graph n'est pas connexe.\n");
     }
 
-    printf("Suffixe : \n");
+    printf("\n Parcours suffixe : \n");
     connexe = afficher(profondeur_suffixe, adjacence, nombre_sommets);
     if (connexe == 0){
         printf("Le graph est connexe.\n");
@@ -192,7 +192,7 @@ int main(int argc, char ** argv){
         printf("Le graph n'est pas connexe.\n");
     }
 
-    printf("Parcours en largeur : \n");
+    printf("\nParcours en largeur : \n");
     connexe = parcours_largeur(adjacence, nombre_sommets);
     if (connexe == 0){
         printf("Le graph est connexe.\n");
@@ -200,7 +200,7 @@ int main(int argc, char ** argv){
         printf("Le graph n'est pas connexe.\n");
     }
 
-    printf("Analyse de la complexité spatiale\n");
+    printf("\nAnalyse de la complexité spatiale\n");
     printf("Taille en octets utilisé par la matrice d'adjacence : %ld octets\n", (long int) (sizeof(int) * nombre_sommets) * sizeof(int) * nombre_sommets);
 
     free_matrice(adjacence, nombre_sommets);
